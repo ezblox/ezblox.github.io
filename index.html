@@ -5,72 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Background Page</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles for the typewriter effect */
+        #title-text {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 36px;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3s steps(30, end), blink-caret 0.5s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            from,
+            to {
+                border-right: 3px solid transparent;
+            }
+            50% {
+                border-right: 3px solid white;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="video-background">
         <video autoplay muted loop id="video-bg" controls>
-            <source src="BG.mp4" type="video/mp4">
+            <source src="your-video.mp4" type="video/mp4">
             <!-- Add additional source tags for different video formats if needed -->
         </video>
         <div class="content">
-            <button id="animated-button">Download</button>
-            <div id="text-container">
-                <div class="typewriter">
-                    <span id="text">Best website</span>
-                    <div class="cursor"></div>
-                </div>
-            </div>
+            <button id="animated-button">Click Me</button>
         </div>
     </div>
+    <div id="title-text">Best website</div>
     <script>
-        // Function to change text every 15 seconds
-        const textArray = ["Best website", "For free lol", "Sub to olix"];
-        let currentIndex = 0;
-        const textElement = document.getElementById("text");
+        // JavaScript to change the title text every 15 seconds
+        const titleText = document.getElementById('title-text');
+        const texts = ["Best website", "For free lol", "Sub to olix"];
+        let textIndex = 0;
 
         function changeText() {
-            textElement.textContent = textArray[currentIndex];
-            currentIndex = (currentIndex + 1) % textArray.length;
+            titleText.textContent = texts[textIndex];
+            textIndex = (textIndex + 1) % texts.length;
         }
 
         setInterval(changeText, 15000); // Change text every 15 seconds
-
-        // Typewriter effect
-        const typingDelay = 100; // Delay between each character (in milliseconds)
-        const eraseDelay = 50; // Delay after typing text (before erasing)
-        const newTextDelay = 2000; // Delay before typing new text
-
-        function typeWriter(text, i, fnCallback) {
-            if (i < text.length) {
-                document.getElementById("text").innerHTML += text.charAt(i);
-                setTimeout(function () {
-                    typeWriter(text, i + 1, fnCallback);
-                }, typingDelay);
-            } else if (typeof fnCallback === "function") {
-                setTimeout(fnCallback, eraseDelay);
-            }
-        }
-
-        function startTextAnimation(i) {
-            if (typeof textArray[i] === "undefined") {
-                setTimeout(function () {
-                    startTextAnimation(0);
-                }, newTextDelay);
-            }
-            if (i < textArray[i].length) {
-                typeWriter(textArray[i], 0, function () {
-                    setTimeout(function () {
-                        startTextAnimation(i + 1);
-                    }, newTextDelay);
-                });
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            if (textArray.length) {
-                startTextAnimation(0);
-            }
-        });
     </script>
 </body>
 </html>
