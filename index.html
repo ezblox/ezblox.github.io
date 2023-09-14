@@ -20,9 +20,6 @@
         }
 
         @keyframes typing {
-            from {
-                width: 0;
-            }
             to {
                 width: 100%;
             }
@@ -41,7 +38,7 @@
     </div>
     <div id="title-text">Best website</div>
     <script>
-        // JavaScript to change the title text quickly and stop typewriter effect
+        // JavaScript to change the title text quickly
         const titleText = document.getElementById('title-text');
         const texts = ["Best website", "For free lol", "Sub to olix"];
         let textIndex = 0;
@@ -51,12 +48,12 @@
             textIndex = (textIndex + 1) % texts.length;
             titleText.style.animation = 'none'; // Stop the typewriter effect
             setTimeout(() => {
-                titleText.style.animation = 'typing 1s steps(30, end)'; // Restart the typewriter effect with a shorter duration
+                titleText.style.animation = 'typing 1s steps(30, end)'; // Restart the typewriter effect
             }, 10); // A small delay to restart the animation
         }
 
-        changeText(); // Initial text change
-        setInterval(changeText, 3000); // Change text every 3 seconds (adjust the timing as needed)
+        changeText(); // Run the function immediately to start the animation
+        setInterval(changeText, 5000); // Change text every 5 seconds
     </script>
 </body>
 </html>
