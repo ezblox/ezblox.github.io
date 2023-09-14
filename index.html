@@ -8,17 +8,69 @@
 </head>
 <body>
     <div class="video-background">
-        <video autoplay muted loop id="video-bg" controls="false">
+        <video autoplay muted loop id="video-bg" controls>
             <source src="BG.mp4" type="video/mp4">
             <!-- Add additional source tags for different video formats if needed -->
         </video>
         <div class="content">
             <button id="animated-button">Click Me</button>
-            <div class="text-container">
-                <div id="changing-text" class="typewriter-text"></div>
+            <div id="text-container">
+                <div class="typewriter">
+                    <span id="text">Best website</span>
+                    <div class="cursor"></div>
+                </div>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        // Function to change text every 15 seconds
+        const textArray = ["Best website", "For free lol", "Sub to olix"];
+        let currentIndex = 0;
+        const textElement = document.getElementById("text");
+
+        function changeText() {
+            textElement.textContent = textArray[currentIndex];
+            currentIndex = (currentIndex + 1) % textArray.length;
+        }
+
+        setInterval(changeText, 15000); // Change text every 15 seconds
+
+        // Typewriter effect
+        const typingDelay = 100; // Delay between each character (in milliseconds)
+        const eraseDelay = 50; // Delay after typing text (before erasing)
+        const newTextDelay = 2000; // Delay before typing new text
+
+        function typeWriter(text, i, fnCallback) {
+            if (i < text.length) {
+                document.getElementById("text").innerHTML += text.charAt(i);
+                setTimeout(function () {
+                    typeWriter(text, i + 1, fnCallback);
+                }, typingDelay);
+            } else if (typeof fnCallback === "function") {
+                setTimeout(fnCallback, eraseDelay);
+            }
+        }
+
+        function startTextAnimation(i) {
+            if (typeof textArray[i] === "undefined") {
+                setTimeout(function () {
+                    startTextAnimation(0);
+                }, newTextDelay);
+            }
+            if (i < textArray[i].length) {
+                typeWriter(textArray[i], 0, function () {
+                    setTimeout(function () {
+                        startTextAnimation(i + 1);
+                    }, newTextDelay);
+                });
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (textArray.length) {
+                startTextAnimation(0);
+            }
+        });
+    </script>
 </body>
 </html>
