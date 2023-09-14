@@ -41,7 +41,7 @@
     </div>
     <div id="title-text">Best website</div>
     <script>
-        // JavaScript to change the title text every 15 seconds
+        // JavaScript to change the title text quickly and stop typewriter effect
         const titleText = document.getElementById('title-text');
         const texts = ["Best website", "For free lol", "Sub to olix"];
         let textIndex = 0;
@@ -51,11 +51,12 @@
             textIndex = (textIndex + 1) % texts.length;
             titleText.style.animation = 'none'; // Stop the typewriter effect
             setTimeout(() => {
-                titleText.style.animation = 'typing 3s steps(30, end)'; // Restart the typewriter effect
+                titleText.style.animation = 'typing 1s steps(30, end)'; // Restart the typewriter effect with a shorter duration
             }, 10); // A small delay to restart the animation
         }
 
-        setInterval(changeText, 15000); // Change text every 15 seconds
+        changeText(); // Initial text change
+        setInterval(changeText, 3000); // Change text every 3 seconds (adjust the timing as needed)
     </script>
 </body>
 </html>
