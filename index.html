@@ -17,7 +17,6 @@
             white-space: nowrap;
             overflow: hidden;
             width: 0;
-            animation: typing 3s steps(30, end), blink-caret 0.5s step-end infinite;
         }
 
         @keyframes typing {
@@ -26,16 +25,6 @@
             }
             to {
                 width: 100%;
-            }
-        }
-
-        @keyframes blink-caret {
-            from,
-            to {
-                border-right: 3px solid transparent;
-            }
-            50% {
-                border-right: 3px solid white;
             }
         }
     </style>
@@ -60,6 +49,10 @@
         function changeText() {
             titleText.textContent = texts[textIndex];
             textIndex = (textIndex + 1) % texts.length;
+            titleText.style.animation = 'none'; // Stop the typewriter effect
+            setTimeout(() => {
+                titleText.style.animation = 'typing 3s steps(30, end)'; // Restart the typewriter effect
+            }, 10); // A small delay to restart the animation
         }
 
         setInterval(changeText, 15000); // Change text every 15 seconds
