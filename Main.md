@@ -9,7 +9,7 @@
 <body>
     <div class="video-background">
         <video autoplay muted loop id="video-bg">
-            <source src="your-video.mp4" type="video/mp4">
+            <source src="Part.wmv" type="video/wmv">
             <!-- Add additional source tags for different video formats -->
         </video>
         <div class="content">
