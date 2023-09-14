@@ -54,6 +54,25 @@ body {
     text-align: center;
 }
 
+.title-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1; /* Place the title above the video */
+}
+
+.main-title {
+    font-size: 48px;
+    color: white;
+    margin: 0;
+}
+
+.blue-text {
+    color: blue;
+}
+
 .typewriter-text {
     overflow: hidden;
     border-right: 2px solid white; /* Typewriter cursor effect */
